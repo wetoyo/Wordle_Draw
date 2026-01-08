@@ -123,11 +123,13 @@ class WordleDrawApp:
         
         # Actions
         action_frame = tk.Frame(main_frame)
-        action_frame.pack(pady=10)
+        action_frame.pack(pady=10, fill='x')
         
-        self.solve_btn = tk.Button(action_frame, text="Solve / Generate Words", 
-                                   command=self.solve_grid, font=('Arial', 12, 'bold'), bg='#dddddd')
-        self.solve_btn.pack(fill='x', padx=20)
+        self.clear_btn = tk.Button(action_frame, text="Clear Grid", command=self.clear_grid, font=('Arial', 12))
+        self.clear_btn.pack(side='left', expand=True, fill='x', padx=(20, 5))
+
+        self.solve_btn = tk.Button(action_frame, text="Solve", command=self.solve_grid, font=('Arial', 12, 'bold'), bg='#dddddd')
+        self.solve_btn.pack(side='left', expand=True, fill='x', padx=(5, 20))
         
     def on_cell_click(self, r, c):
         # Reset text if any
@@ -148,6 +150,12 @@ class WordleDrawApp:
             
         self.grid_state[r][c] = new_val
         self.buttons[r][c].configure(bg=self.COLOR_MAP[new_val])
+
+    def clear_grid(self):
+        for r in range(6):
+            for c in range(5):
+                self.grid_state[r][c] = 0
+                self.buttons[r][c].configure(bg=self.COLOR_MAP[0], text="")
 
     def solve_grid(self):
         target_word = self.target_var.get().strip().lower()
