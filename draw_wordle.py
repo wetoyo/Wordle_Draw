@@ -117,7 +117,7 @@ class WordleDrawApp:
         options_frame.pack(pady=10)
         
         self.no_yellow_var = tk.BooleanVar(value=False)
-        self.chk_no_yellow = tk.Checkbutton(options_frame, text="Disable Yellows (Hard Mode)", 
+        self.chk_no_yellow = tk.Checkbutton(options_frame, text="Disable Yellows", 
                                             variable=self.no_yellow_var, font=('Arial', 10))
         self.chk_no_yellow.pack()
         
